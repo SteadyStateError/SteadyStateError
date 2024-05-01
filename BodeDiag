@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+
+# Función de transferencia (numerador, denominador)
+num = [1]
+den = [1, 2, 1]  # Ejemplo: s^2 + 2s + 1
+
+# Crear la función de transferencia
+sys = signal.TransferFunction(num, den)
+
+# Calcular el diagrama de Bode, w[rad/s], mag[dB], phase[deg]
+w, mag, phase = signal.bode(sys)
+
+# Graficar el diagrama de Bode
+fig, (ax1, ax2) = plt.subplots(2, 1)
+ax1.semilogx(w, mag)
+ax1.set_title('Diagrama de Bode - Magnitud')
+ax1.set_xlabel('Frecuencia [rad/s]')
+ax1.set_ylabel('Magnitud [dB]')
+ax1.grid()
+
+ax2.semilogx(w, phase)
+ax2.set_title('Diagrama de Bode - Fase')
+ax2.set_xlabel('Frecuencia [rad/s]')
+ax2.set_ylabel('Fase [grados]')
+ax2.grid()
+
+plt.tight_layout()
+plt.show()
